@@ -27,17 +27,17 @@ export default function ChatlogMD() {
     newChannel, // I don't want to put these here...
     setNewChannel,
     selectedChannels,
-    setShowSettings,
-    showSettings,
     input,
     setInput,
     editingPost,
     setEditingPost
   } = useChatlog();
 
+  const [showSettings, setShowSettings] = useState(false);
   // Main component logic
   return (
     <div className="max-w-4xl mx-auto p-4 grid grid-cols-4 gap-4">
+      {/* channels and settings button */}
       <div className="col-span-1 flex flex-col h-[calc(100vh-2rem)]">
         <div className="flex-grow space-y-4">
           <div className="space-y-2">
@@ -74,7 +74,8 @@ export default function ChatlogMD() {
           Settings
         </Button>
       </div>
-
+      
+      {/* main area */}
       <div className="col-span-3 space-y-4">
         {showSettings ? (
           <SettingsView

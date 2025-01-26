@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Post } from '@/types/chatlog';
-import { Channels } from '@/components/chatlog/channels';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,7 +14,6 @@ export const useChatlog = () => {
     const [selectedChannels, setSelectedChannels] = useState(['general']);
     const [newChannel, setNewChannel] = useState('');
     const [editingPost, setEditingPost] = useState<number | null>(null);
-    const [showSettings, setShowSettings] = useState(false);
 
     // Load data from localStorage on initial render
     useEffect(() => {
@@ -195,8 +193,6 @@ export const useChatlog = () => {
         newChannel, // I dont want to add these here...
         setNewChannel,
         selectedChannels,
-        setShowSettings,
-        showSettings,
         input,
         setInput,
         editingPost,
