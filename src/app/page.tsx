@@ -5,6 +5,7 @@ import { useChatlog } from '@/hooks/usechatlog';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { AutosizeTextarea } from '@/components/ui/autsize-textarea';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Calendar, Hash, Move, MessageSquare, X, Settings, Download, Trash, Edit, Check } from 'lucide-react';
@@ -86,10 +87,11 @@ export default function ChatlogMD() {
         ) : (
           <>
             <div className="space-y-2">
-              <Textarea
+              <AutosizeTextarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Write in Markdown..."
+                maxHeight={800}
                 className="min-h-24"
               />
               <div className="flex justify-between items-center">
