@@ -10,6 +10,9 @@ import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Calendar, Hash, Move, MessageSquare, X, Settings, Download, Trash, Edit, Check } from 'lucide-react';
 
+import MDEditor from '@uiw/react-md-editor';
+import { ModeToggle } from '@/components/ui/mode-toggle';
+
 export default function ChatlogMD() {
   const {
     posts,
@@ -37,6 +40,9 @@ export default function ChatlogMD() {
   // Main component logic
   return (
     <div className="max-w-4xl mx-auto p-4 grid grid-cols-4 gap-4">
+      <div className="fixed top-4 right-4 z-50">
+        <ModeToggle></ModeToggle>
+      </div>
       {/* channels and settings button */}
       <div className="col-span-1 flex flex-col h-[calc(100vh-2rem)]">
         <div className="flex-grow space-y-4">
@@ -87,12 +93,21 @@ export default function ChatlogMD() {
         ) : (
           <>
             <div className="space-y-2">
+              {/*
               <AutosizeTextarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Write in Markdown..."
                 maxHeight={800}
                 className="min-h-24"
+              />
+                */}
+              <MDEditor
+                value = {input}
+                onChange={(e) => setInput(e ?? '')}
+                textareaProps={{
+                  placeholder: 'Write in Markdown...'
+                }}
               />
               <div className="flex justify-between items-center">
                 <div className="text-sm text-gray-500">
