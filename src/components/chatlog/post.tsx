@@ -1,4 +1,3 @@
-// src/components/chatlog/Post.tsx
 import { Post as PostType } from '@/types/chatlog';
 import { exportPostToMd } from '@/utils/export';
 import { Button } from '@/components/ui/button';

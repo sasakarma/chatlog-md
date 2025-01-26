@@ -1,4 +1,3 @@
-// src/app/chatlog/page.tsx
 "use client"
 import { Post } from '@/components/chatlog/post';
 import { SettingsView } from '@/components/chatlog/settingsview';

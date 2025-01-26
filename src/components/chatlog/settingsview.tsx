@@ -1,4 +1,3 @@
-// src/components/chatlog/SettingsView.tsx
 import { Post } from '@/types/chatlog';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';

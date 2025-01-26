@@ -1,4 +1,3 @@
-// src/components/chatlog/MarkdownRenderer.tsx
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';

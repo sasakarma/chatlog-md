@@ -1,4 +1,3 @@
-// src/utils/export.ts
 import { Post } from '@/types/chatlog';
 export const exportPostToMd = (post: Post) => {
   const metadata = `---
