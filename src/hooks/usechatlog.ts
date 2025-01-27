@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from 'react';
 import { Post } from '@/types/chatlog';
 import { Card } from '@/components/ui/card';
@@ -8,6 +9,8 @@ import { Calendar, Hash, Move, MessageSquare, X, Settings, Download, Trash, Edit
 
 
 export const useChatlog = () => {
+     
+    const [isLoaded, setIsLoaded] = useState(false);
     const [posts, setPosts] = useState<Post[]>([]);
     const [input, setInput] = useState('');
     const [channels, setChannels] = useState(['general']);
@@ -17,32 +20,39 @@ export const useChatlog = () => {
 
     // Load data from localStorage on initial render
     useEffect(() => {
-        // Load data from localStorage
-        const savedPosts = localStorage.getItem('chatlogmd-posts');
-        const savedChannels = localStorage.getItem('chatlogmd-channels');
+        if(!isLoaded){
+            // Load data from localStorage
+            const savedPosts = localStorage.getItem('chatlogmd-posts');
+            const savedChannels = localStorage.getItem('chatlogmd-channels');
 
-        if (savedPosts) {
-            setPosts(JSON.parse(savedPosts));
-        }
-
-        if (savedChannels) {
-            const parsedChannels = JSON.parse(savedChannels);
-            setChannels(parsedChannels);
-            if (!parsedChannels.includes('general')) {
-                setChannels(prev => ['general', ...prev]);
+            if (savedPosts) {
+                setPosts(JSON.parse(savedPosts));
             }
+
+            if (savedChannels) {
+                const parsedChannels = JSON.parse(savedChannels);
+                setChannels(parsedChannels);
+                if (!parsedChannels.includes('general')) {
+                    setChannels(prev => ['general', ...prev]);
+                }
+            }
+            setIsLoaded(true);
         }
-    }, []);
+    }, [isLoaded]);
 
     // Save posts to localStorage whenever they change
     useEffect(() => {
-        localStorage.setItem('chatlogmd-posts', JSON.stringify(posts));
-    }, [posts]);
+        if(isLoaded){
+            localStorage.setItem('chatlogmd-posts', JSON.stringify(posts));
+        }
+    }, [posts, isLoaded]);
 
     // Save channels to localStorage whenever they change
     useEffect(() => {
-        localStorage.setItem('chatlogmd-channels', JSON.stringify(channels));
-    }, [channels]);
+        if(isLoaded) {
+            localStorage.setItem('chatlogmd-channels', JSON.stringify(channels));
+        }
+    }, [channels, isLoaded]);
 
     const addPost = (content: string, channel: string) => {
         const newPost = {
